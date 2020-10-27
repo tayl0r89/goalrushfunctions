@@ -1,14 +1,17 @@
 const Firestore = require('@google-cloud/firestore')
 const PROJECTID = 'goalrush'
-const COLLECTION_NAME = 'fixtures'
+const FIXTURES = 'fixtures'
 const db = new Firestore({
   projectId: PROJECTID
 })
 
 exports.fixtures = async (req, res) => {
-  const home = "home"
-  const away = "away"
-  const number = 1
-  const document = await db.collection(COLLECTION_NAME).add({ home, away, number })
-  res.send({document})
+  const results = await db.collection(FIXTURES).get()
+  const fixtures = []
+  results.forEach(d => {
+    fixtures.push(d.data())
+  })
+  res.send({
+    "fixtures": fixtures.sort((a,b) => a.number > b.number)
+  })
 }

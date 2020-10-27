@@ -9,6 +9,10 @@ scrapeFixtures = async (req, res) => {
     const getText = async (element) => {
         return page.evaluate(element => element.textContent, element);
     }
+    const getNumber = async (element) => {
+        const value = await page.evaluate(element => element.textContent, element)
+        return Number.parseInt(value)
+    }
     const batch = db.batch()
     const puppeteer = require('puppeteer-extra')
     const StealthPlugin = require('puppeteer-extra-plugin-stealth')
@@ -22,7 +26,7 @@ scrapeFixtures = async (req, res) => {
         const numberElement = await items[i].$('div.number')
         const homeElement = await items[i].$('div.home')
         const awayElement = await items[i].$('div.away')
-        const number = numberElement ? await getText(numberElement) : undefined
+        const number = numberElement ? await getNumber(numberElement) : undefined
         const home = homeElement ? await getText(homeElement) : undefined
         const away = awayElement ? await getText(awayElement) : undefined
         if(number != null && home != null && away != null){
