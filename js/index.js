@@ -1,10 +1,14 @@
-exports.leagueTable = async (req, res) => {
-    const leagueTable =[
-        {player: "Mum", points: 1, goals: 4},
-        {player: "Suzi", points: 1, goals: 3},
-        {player: "Random", points: 1, goals: 3},
-        {player: "Iain", points: 1, goals: 3},
-        {player: "Ste", points: 0, goals: 0}
-    ]
-    res.send({leagueTable})
+const Firestore = require('@google-cloud/firestore')
+const PROJECTID = 'goalrush'
+const COLLECTION_NAME = 'fixtures'
+const db = new Firestore({
+  projectId: PROJECTID
+})
+
+exports.fixtures = async (req, res) => {
+  const home = "home"
+  const away = "away"
+  const number = 1
+  const document = await db.collection(COLLECTION_NAME).add({ home, away, number })
+  res.send({document})
 }
