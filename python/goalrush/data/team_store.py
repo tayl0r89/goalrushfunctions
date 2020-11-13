@@ -5,7 +5,7 @@ class TeamStore:
     def __init__(self, df):
         self.df = df
 
-    def get_teams(self, format="list"):
+    def get_teams(self, format="df"):
         """Get a list of all teams allowing for a specific format"""
         return utils.format_df(self.df, format)
 
