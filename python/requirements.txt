@@ -1,3 +1,2 @@
-beautifulsoup4
-requests_html
 google-cloud-firestore
+pandas
