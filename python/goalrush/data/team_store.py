@@ -1,4 +1,4 @@
-import utils
+from .utils import format_df
 
 class TeamStore:
     """This is an abstract version of the TeamStore"""
@@ -7,7 +7,7 @@ class TeamStore:
 
     def get_teams(self, format="df"):
         """Get a list of all teams allowing for a specific format"""
-        return utils.format_df(self.df, format)
+        return format_df(self.df, format)
 
     def get_team(self, team_name):
         """Retrieves a single team dict first looking at team name, then aliases."""

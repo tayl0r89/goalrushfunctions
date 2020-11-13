@@ -1,4 +1,4 @@
-from result_store import ResultStore
+from .result_store import ResultStore
 import pandas as pd
 
 class CsvResultStore(ResultStore):

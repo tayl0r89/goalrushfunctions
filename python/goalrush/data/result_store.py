@@ -1,4 +1,4 @@
-import utils
+from .utils import format_df
 
 class ResultStore:
 
@@ -8,4 +8,4 @@ class ResultStore:
 
     def get_team_results(self, team_name, format="df"):
         values = self.results[(self.results['HomeTeam'] == team_name) | (self.results['AwayTeam'] == team_name)]
-        return utils.format_df(values, format)
+        return format_df(values, format)
