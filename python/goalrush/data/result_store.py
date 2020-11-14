@@ -5,6 +5,8 @@ class ResultStore:
     def __init__(self, results_df):
         self.results = results_df
         self.results['btts'] = (self.results['FTHG'] > 0) & (self.results['FTAG'] > 0)
+        self.results["HSO"] = self.results["HS"] - self.results["HST"]
+        self.results["ASO"] = self.results["AS"] - self.results["AST"]
 
     def get_results(self):
         return self.results
