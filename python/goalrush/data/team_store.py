@@ -15,4 +15,9 @@ class TeamStore:
         temp = self.df[self.df.apply(lookup, axis = 1)]
         response = list(temp.to_dict(orient="index").values())
         return response[0] if len(response) > 0 else None
+    
+    def get_team_id(self, team_name):
+        """Returns the id for a given team, or None if the team is not found"""
+        team = self.get_team(team_name)
+        return team['id'] if not team is None else None
         
