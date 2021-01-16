@@ -7,8 +7,7 @@ from .team_stats import prepare_combined_stats
 def train_fthg_model(rs):
     """ calculates the parameters for the model based on historic data"""
     # load dataframe of past data for the predictive model
-    df = rs.get_results()
-
+    df = rs.get_results(current_season_only=False)
     # set up the model
     modelFTHG = smf.ols(formula='FTHG ~ HST + HSO + HC', data=df)
     return modelFTHG.fit()
@@ -16,7 +15,7 @@ def train_fthg_model(rs):
 def train_ftag_model(rs):    # calculates the parameters for the model based on historic data
     """ calculates the parameters for the model based on historic data"""
     # load dataframe of past data for the predictive model
-    df = rs.get_results()
+    df = rs.get_results(current_season_only=False)
 
     # set up the model
     modelFTAG = smf.ols(formula='FTAG ~ AST + ASO + AC', data=df)
@@ -25,7 +24,7 @@ def train_ftag_model(rs):    # calculates the parameters for the model based on 
 def exp_goals_predictor(fs, rs, ts):    # predicts expG from the savedd model
     """ calculates expG model and adds home and away expG to a list of games"""
     res_fthg = train_fthg_model(rs)
-    res_ftag = train_fthg_model(rs)
+    res_ftag = train_ftag_model(rs)
 
     game_stats = prepare_combined_stats(fs, rs, ts)
 

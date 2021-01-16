@@ -40,7 +40,6 @@ def get_cache_filename(key):
     return "{key}-{date}".format(key=key, date=datetime.datetime.now().strftime("%d-%b-%Y"))
 
 def cache_df(df, key):
-    cache_path = get_cache_path()
-    file_name = os.path.join(cache_dir, get_cache_filename(key))
+    file_name = os.path.join(get_cache_path(), get_cache_filename(key))
     df.to_csv(file_name, index=False) 
     return file_name

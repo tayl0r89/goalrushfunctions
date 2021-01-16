@@ -1,6 +1,6 @@
 from .btts_form import btts_away_form, btts_home_form
 
-def goal_rush_rating(rs, fs, ts):    # runs form table for the goal rush fixtures
+def goal_rush_ratings(rs, fs, ts):    # runs form table for the goal rush fixtures
     """ runs form table for the goal rush fixtures"""
 
     # prepare goal rush fixture list from pools website
